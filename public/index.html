@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConnectSphere – Connect with friends and the world around you</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+<body>
+
+  <!-- Educational Project Notice -->
+  <div class="demo-banner">
+    <span class="badge">LEARNING PROJECT</span>
+    <span><strong>ConnectSphere Demo:</strong> Secure authentication platform with bcrypt salted hashing & SQLite database storage.</span>
+  </div>
+
+  <!-- Main Login Presentation -->
+  <main class="login-wrapper">
+    <div class="login-container">
+      
+      <!-- Left Column: Branding and Social Value -->
+      <section class="hero-column">
+        <div class="brand-logo-wrap">
+          <div class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+          </div>
+          <h1 class="brand-title">connectsphere</h1>
+        </div>
+
+        <p class="hero-subtitle">
+          Connect with friends and the world around you on ConnectSphere.
+        </p>
+
+        <ul class="hero-features">
+          <li>
+            <span class="feature-check">✓</span>
+            <span>Discover communities and stay connected with friends.</span>
+          </li>
+          <li>
+            <span class="feature-check">✓</span>
+            <span>Protected by industry-standard bcrypt salted password hashing.</span>
+          </li>
+          <li>
+            <span class="feature-check">✓</span>
+            <span>Parameterized SQLite database queries preventing SQL injection.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Right Column: Authentication Card -->
+      <section class="card-column">
+        <div class="auth-card">
+          
+          <!-- Alert Banner for Feedback -->
+          <div id="loginAlert" class="alert-box alert-error" role="alert"></div>
+
+          <!-- Login Form -->
+          <form id="loginForm" autocomplete="on" novalidate>
+            <div class="form-group">
+              <input 
+                type="text" 
+                id="loginIdentifier" 
+                name="identifier" 
+                class="form-input" 
+                placeholder="Email address or username" 
+                required 
+                autofocus
+                autocomplete="username"
+              >
+            </div>
+
+            <div class="form-group">
+              <div class="password-wrapper">
+                <input 
+                  type="password" 
+                  id="loginPassword" 
+                  name="password" 
+                  class="form-input" 
+                  placeholder="Password" 
+                  required
+                  autocomplete="current-password"
+                >
+                <button 
+                  type="button" 
+                  class="password-toggle-btn" 
+                  id="toggleLoginPasswordBtn" 
+                  title="Show/Hide Password"
+                  aria-label="Toggle password visibility"
+                >
+                  👁️
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" id="loginSubmitBtn" class="btn btn-primary">
+              Log In
+            </button>
+          </form>
+
+          <div class="card-links">
+            <a href="#" id="forgotPasswordLink" class="forgot-link">Forgotten password?</a>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="create-account-wrap">
+            <button type="button" id="openRegisterModalBtn" class="btn btn-success">
+              Create new account
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Quick Fill Helper for Demo / Grading -->
+        <div class="demo-pill">
+          <header>
+            <span>Demo Test Account</span>
+            <button type="button" class="quick-fill-btn" id="quickFillBtn">Auto Fill</button>
+          </header>
+          <div>User: <code>alex@example.com</code></div>
+          <div>Pass: <code>Password123!</code></div>
+        </div>
+
+        <p class="card-footer-note">
+          <a href="/register">Create a Page</a> for a celebrity, brand or business.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Registration Modal Dialog -->
+  <div class="modal-backdrop" id="registerModal" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Sign Up</h2>
+        <p class="modal-subtitle">It's quick and easy.</p>
+        <button type="button" class="modal-close-btn" id="closeRegisterModalBtn" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div id="registerAlert" class="alert-box alert-error" role="alert"></div>
+
+        <form id="registerForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="regFirstName" name="firstName" class="form-input" placeholder="First name" required>
+            </div>
+            <div class="form-group">
+              <input type="text" id="regLastName" name="lastName" class="form-input" placeholder="Surname" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="regUsername" name="username" class="form-input" placeholder="Choose a unique username (e.g. alex99)" required>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="regEmail" name="email" class="form-input" placeholder="Mobile number or email address" required>
+          </div>
+
+          <div class="form-group">
+            <div class="password-wrapper">
+              <input type="password" id="regPassword" name="password" class="form-input" placeholder="New password (min 8 chars)" required>
+              <button type="button" class="password-toggle-btn" id="toggleRegPasswordBtn" aria-label="Toggle password visibility">👁️</button>
+            </div>
+            <div class="password-meter" aria-hidden="true">
+              <div class="password-meter-fill" id="regPasswordStrength"></div>
+            </div>
+            <div class="password-hint" id="regPasswordHint">Use at least 8 characters with numbers or symbols.</div>
+          </div>
+
+          <!-- Date of Birth Selection -->
+          <label class="section-label">Date of birth</label>
+          <div class="date-selectors">
+            <select id="regBirthDay" class="date-select" aria-label="Day"></select>
+            <select id="regBirthMonth" class="date-select" aria-label="Month">
+              <option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option>
+              <option value="04">Apr</option><option value="05">May</option><option value="06">Jun</option>
+              <option value="07">Jul</option><option value="08">Aug</option><option value="09">Sep</option>
+              <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+            </select>
+            <select id="regBirthYear" class="date-select" aria-label="Year"></select>
+          </div>
+
+          <!-- Gender Selection -->
+          <label class="section-label">Gender</label>
+          <div class="gender-options">
+            <label class="gender-box">
+              <span>Female</span>
+              <input type="radio" name="gender" value="Female">
+            </label>
+            <label class="gender-box">
+              <span>Male</span>
+              <input type="radio" name="gender" value="Male">
+            </label>
+            <label class="gender-box">
+              <span>Custom</span>
+              <input type="radio" name="gender" value="Custom" checked>
+            </label>
+          </div>
+
+          <p class="legal-notice">
+            By clicking Sign Up, you agree to our <a href="#">Terms</a>, <a href="#">Privacy Policy</a> and <a href="#">Cookies Policy</a>. Passwords are securely hashed with bcrypt.
+          </p>
+
+          <div style="text-align: center;">
+            <button type="submit" id="regSubmitBtn" class="btn btn-success" style="width: 200px;">
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Standard Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-languages">
+        <a href="#">English (UK)</a>
+        <a href="#">Español</a>
+        <a href="#">Français (France)</a>
+        <a href="#">Português (Brasil)</a>
+        <a href="#">Deutsch</a>
+        <a href="#">Italiano</a>
+        <a href="#">日本語</a>
+        <a href="#">हिन्दी</a>
+      </div>
+
+      <div class="footer-links">
+        <a href="/register">Sign Up</a>
+        <a href="/">Log In</a>
+        <a href="#">Messenger</a>
+        <a href="#">ConnectSphere Lite</a>
+        <a href="#">Video</a>
+        <a href="#">Places</a>
+        <a href="#">Games</a>
+        <a href="#">Marketplace</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+        <a href="#">Security Demo &copy; 2026 ConnectSphere</a>
+      </div>
+
+      <p class="footer-copy">
+        ConnectSphere &bull; A demonstration web application for secure credential handling, bcrypt password hashing, and parameterized SQLite storage.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

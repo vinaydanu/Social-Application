@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up for ConnectSphere – Create Your Account</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+  <style>
+    .register-page-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 16px;
+    }
+    .register-brand-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .standalone-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow);
+      max-width: 480px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .register-header-bar {
+      padding: 20px 24px 14px 24px;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+    .register-form-padding {
+      padding: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Educational Project Banner -->
+  <div class="demo-banner">
+    <span class="badge">LEARNING PROJECT</span>
+    <span><strong>ConnectSphere Registration:</strong> Create a new demo account with salted bcrypt encryption stored in SQLite.</span>
+  </div>
+
+  <main class="register-page-wrapper">
+    <div class="register-brand-header">
+      <div class="brand-logo-wrap" style="justify-content: center;">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+        </div>
+        <a href="/" style="text-decoration: none;"><h1 class="brand-title">connectsphere</h1></a>
+      </div>
+    </div>
+
+    <div class="standalone-card">
+      <div class="register-header-bar">
+        <h2 style="font-size: 26px; font-weight: 700; color: var(--text-primary);">Create a new account</h2>
+        <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">It's quick and easy.</p>
+      </div>
+
+      <div class="register-form-padding">
+        <!-- Error / Success Alert Box -->
+        <div id="standaloneAlert" class="alert-box alert-error" role="alert"></div>
+
+        <form id="standaloneRegisterForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="sRegFirstName" name="firstName" class="form-input" placeholder="First name" required autofocus>
+            </div>
+            <div class="form-group">
+              <input type="text" id="sRegLastName" name="lastName" class="form-input" placeholder="Surname" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="sRegUsername" name="username" class="form-input" placeholder="Username (letters, numbers, underscores)" required>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="sRegEmail" name="email" class="form-input" placeholder="Email address" required>
+          </div>
+
+          <div class="form-group">
+            <div class="password-wrapper">
+              <input type="password" id="sRegPassword" name="password" class="form-input" placeholder="New password (at least 8 chars)" required>
+              <button type="button" class="password-toggle-btn" id="sTogglePasswordBtn" aria-label="Toggle password visibility">👁️</button>
+            </div>
+            <div class="password-meter" aria-hidden="true">
+              <div class="password-meter-fill" id="sPasswordStrength"></div>
+            </div>
+            <div class="password-hint" id="sPasswordHint">Password must be at least 8 characters with numbers or symbols.</div>
+          </div>
+
+          <!-- Date of Birth Selection -->
+          <label class="section-label">Date of birth</label>
+          <div class="date-selectors">
+            <select id="sBirthDay" class="date-select" aria-label="Day"></select>
+            <select id="sBirthMonth" class="date-select" aria-label="Month">
+              <option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option>
+              <option value="04">Apr</option><option value="05">May</option><option value="06">Jun</option>
+              <option value="07">Jul</option><option value="08">Aug</option><option value="09">Sep</option>
+              <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+            </select>
+            <select id="sBirthYear" class="date-select" aria-label="Year"></select>
+          </div>
+
+          <!-- Gender Selection -->
+          <label class="section-label">Gender</label>
+          <div class="gender-options">
+            <label class="gender-box">
+              <span>Female</span>
+              <input type="radio" name="standaloneGender" value="Female">
+            </label>
+            <label class="gender-box">
+              <span>Male</span>
+              <input type="radio" name="standaloneGender" value="Male">
+            </label>
+            <label class="gender-box">
+              <span>Custom</span>
+              <input type="radio" name="standaloneGender" value="Custom" checked>
+            </label>
+          </div>
+
+          <p class="legal-notice">
+            By clicking Sign Up, you agree to our <a href="#">Terms</a>, <a href="#">Privacy Policy</a> and <a href="#">Cookies Policy</a>. Passwords are securely hashed with bcrypt.
+          </p>
+
+          <button type="submit" id="sRegSubmitBtn" class="btn btn-success" style="width: 100%; margin-bottom: 14px;">
+            Sign Up
+          </button>
+
+          <div style="text-align: center;">
+            <a href="/" class="forgot-link" style="font-size: 15px; font-weight: 600;">Already have an account? Log In</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links" style="justify-content: center;">
+        <a href="/">Log In</a>
+        <a href="/register">Sign Up</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Security Overview</a>
+        <span>ConnectSphere &copy; 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
